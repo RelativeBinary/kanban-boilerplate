@@ -14,7 +14,7 @@ const corsOptions = {
 app.use(cors());
 
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+  res.send("Hello World! From Railway!");
   console.log("Response sent");
   console.log("Some change to the file", middleware);
 });
