@@ -1,7 +1,6 @@
 // index.js
 import express from "express";
-import { middleware } from "#middlewares/middlewares.js";
-import supabase from "#config/supabaseClient.js";
+import supabase from "./config/supabaseClient";
 import cors from 'cors';
 
 const app = express();
@@ -16,7 +15,6 @@ app.use(cors());
 app.get("/", (req, res) => {
   res.send("Hello World! From Railway!");
   console.log("Response sent");
-  console.log("Some change to the file", middleware);
 });
 
 app.router.get('/tasks', async (require, res) => {
