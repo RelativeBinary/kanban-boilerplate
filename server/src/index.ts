@@ -1,6 +1,8 @@
 import express from 'express';
 import { config } from 'dotenv';
+import supabaseKey from './supabaseClient.js';
 
+console.log(supabaseKey);
 
 config()
 
