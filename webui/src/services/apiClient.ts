@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = import.meta.env.VITE_API || 'https://api.example.com';
+const BASE_URL = import.meta.env.VITE_URL || 'ERROR_BAD_ENV_VARS';
 
 const apiClient = axios.create({
   baseURL: BASE_URL,
