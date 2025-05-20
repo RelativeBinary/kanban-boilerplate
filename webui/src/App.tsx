@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getAllTasks } from "./services/apiClient";
+import { Button } from "@mui/material";
 
 
 function App() {
@@ -26,6 +27,8 @@ function App() {
     <>
       <h2>Tasks</h2>
       { data && <div>{JSON.stringify(data)}</div>}
+      <h2>MUI Test</h2>
+      <Button variant="contained">Add task</Button>
     </>
   )
 }
