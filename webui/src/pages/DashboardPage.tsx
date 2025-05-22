@@ -1,8 +1,8 @@
 import { Card, CardHeader, Paper } from "@mui/material";
-import styles from './Dashboard.module.css'
+import styles from './DashboardPage.module.css'
 
 
-export const Dashboard = () => {
+export const DashboardPage = () => {
   return (
     <Paper className={styles['dashboard-pat']}>
       <Card>
