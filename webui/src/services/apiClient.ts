@@ -11,7 +11,6 @@ const apiClient = axios.create({
 
 // Define common API methods 
 // url in this context is actually added ontop of the baseURL cofiguration
-export const getAllTasks = (url:  string, config = {}) => {
-  console.log('getting all tasks');
+export const useGet = (url:  string, config = {}) => {
   return apiClient.get(url, config);
 }

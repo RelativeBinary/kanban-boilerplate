@@ -1,5 +1,1 @@
-import { useState, useEffect, useCallback } from 'react';
-
-const useApi = (url, options = {}) => {
-
-}
+// Some sort of generic api calling hook
