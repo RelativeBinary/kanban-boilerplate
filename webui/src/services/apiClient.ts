@@ -14,3 +14,36 @@ const apiClient = axios.create({
 export const useGet = (url:  string, config = {}) => {
   return apiClient.get(url, config);
 }
+
+export const usePost = <T = unknown>(url: string, data: T, config = {}) => {
+  return apiClient.post(url, data, config);
+}
+
+// used for replacing a whole resource
+// if its not in the payload that means we want it gone
+export const usePut = <T = unknown>(url: string, data: T, config = {}) => {
+  return apiClient.put(url, data, config);
+}
+
+// used for replacing part of a resource and not the whole thing
+// only updating what we are providing
+export const usePatch = <T = any>(url: string, data: T, config = {}) => {
+  return apiClient.patch(url, data, config);
+}
+
+export const useDelete = (url: string, config = {}) => {
+  // if you wish to send delete target as an obj instead of in the url 
+  // you can put it in the config obj as 'data: { ur data }'
+  return apiClient.delete(url, config);
+}
+
+// Repetions here 
+const apiClient1 = axios.create({
+  baseURL: BASE_URL,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
+const useGet1 = (url: string, config = {}) => {
+  return apiClient.get(url, config);
+};

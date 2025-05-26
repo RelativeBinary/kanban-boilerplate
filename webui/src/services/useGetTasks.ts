@@ -23,7 +23,7 @@ export const useGetAllTasks = () => {
 
       setTasks(response.data);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Something went wrong");
+      setError(err instanceof Error ? err.message : "unknown error occurred");
     } finally {
       setLoading(false);
     }
