@@ -18,7 +18,8 @@ app.get("/", (_, res) => {
   res.send("<h1>Hello! World!</h1>");
 });
 
-app.get('/tasks', async (_, res) => {
+app.get('/tasks', async (req, res) => {
+  console.log('Incoming tasks request origin:', req.headers.origin);
   try {
     const { data, error } = await supabase 
     .from('tasks')
