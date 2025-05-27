@@ -5,7 +5,6 @@ import { Users } from "./userPage/Users";
 
 export const UserPage = () => {
   const { users, loading, error } = useGetUsers();
-  console.log("users", users);
   return (
     <div className={styles["user-page"]}>
       <div className="search">This is search</div>

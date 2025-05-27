@@ -16,7 +16,6 @@ export const useGetUsers = () => {
     try {
       // todo add searchCriteria
       const response = await getUsers({});
-      console.log('response', response);
       setUsers(response);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'unknown error occurred when getting users');

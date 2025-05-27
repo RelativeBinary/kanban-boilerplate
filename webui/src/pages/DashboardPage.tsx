@@ -1,8 +1,11 @@
 import { Card, CardContent, CardHeader, Paper, Typography } from "@mui/material";
 import styles from './DashboardPage.module.css'
+import { useGetAllTasks } from "../services/useGetTasks";
 
 
 export const DashboardPage = () => {
+  const {tasks, loading, error} = useGetAllTasks();
+  console.log('tasks', tasks);
   return (
     <Paper className={styles['dashboard']}>
       <Card variant="outlined" className={styles['backlog-card']}>

@@ -20,7 +20,8 @@ export const useGetAllTasks = () => {
       // if (response.status >= 400) {
       //   throw new Error(`HTTP ${response.status}: ${response.statusText}`);
       // }
-
+      console.log('response status: ', response.status);
+      console.log('response ',response);
       setTasks(response.data);
     } catch (err) {
       setError(err instanceof Error ? err.message : "unknown error occurred");
