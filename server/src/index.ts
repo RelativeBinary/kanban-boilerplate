@@ -6,7 +6,7 @@ import supabase from './supabaseClient.js';
 // load env variables fomr dotenv first
 config();
 const app = express();
-const PORT = process.env.LOCAL || 3000;
+const PORT = process.env.PORT || 3000;
 const ORIGIN = process.env.ORIGIN || 'ERROR NO ORIGIN CONFIGURED';
 app.use(cors({
   origin: ORIGIN,
