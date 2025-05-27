@@ -1,9 +1,10 @@
 import express from 'express';
-import supabase from './supabaseClient.js';
 import cors from 'cors';
 import { config } from 'dotenv';
+import supabase from './supabaseClient.js';
 
-config()
+// load env variables fomr dotenv first
+config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 const allowedOrigins = [
@@ -27,10 +28,10 @@ app.use(cors({
 }));
 
 app.get("/", (_, res) => {
-  res.send("<h1>Hello! World!");
+  res.send("<h1>Hello! World!</h1>");
 });
 
-app.router.get('/tasks', async (_, res) => {
+app.get('/tasks', async (_, res) => {
   try {
     const { data, error } = await supabase 
     .from('tasks')
