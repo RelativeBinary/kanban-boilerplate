@@ -7,29 +7,12 @@ import supabase from './supabaseClient.js';
 config();
 const app = express();
 const PORT = process.env.LOCAL || 3000;
-const LOCAL_UI_PORT = process.env.LOCAL_UI_PORT || 3001;
-const allowedOrigins = [
-  'https://kanban-boilerplate.vercel.app',
-  `http://localhost:${LOCAL_UI_PORT}`,
-];
-
-// app.use(cors({
-//   origin: function(origin, callback) {
-//     console.log('conifgured origin: ', origin);
-//     // Allow requests with no origin (like mobile apps or curl requests)
-//     if (!origin) return callback(null, true);
-    
-//     if (allowedOrigins.indexOf(origin) === -1) {
-//       console.log('origin not found: ', origin);
-//       const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
-//       return callback(new Error(msg), false);
-//     }
-//     return callback(null, true);
-//   },
-//   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-//   allowedHeaders: ['Content-Type', 'Authorization']
-// }));
-app.use(cors());
+const ORIGIN = process.env.ORIGIN || 'ERROR NO ORIGIN CONFIGURED';
+app.use(cors({
+  origin: ORIGIN,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 
 app.get("/", (_, res) => {
   res.send("<h1>Hello! World!</h1>");
