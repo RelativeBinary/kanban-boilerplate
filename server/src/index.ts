@@ -12,7 +12,7 @@ const allowedOrigins = [
   'https://kanban-boilerplate.vercel.app',
   `http://localhost:${LOCAL_UI_PORT}`,
 ];
-
+console.log('loading index...');
 app.use(cors({
   origin: function(origin, callback) {
     console.log('conifgured origin: ', origin);
@@ -52,5 +52,5 @@ app.get('/tasks', async (_, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log('Server running on port:', PORT);
+  console.log('>:3 Server running on port:', PORT);
 });
