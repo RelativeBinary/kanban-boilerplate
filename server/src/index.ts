@@ -8,12 +8,12 @@ config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 const ORIGIN = process.env.ORIGIN || 'ERROR NO ORIGIN CONFIGURED';
-// app.use(cors({
-//   origin: ORIGIN,
-//   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-//   allowedHeaders: ['Content-Type', 'Authorization']
-// }));
-app.use(cors());
+app.use(cors({
+  origin: ORIGIN,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+// app.use(cors());
 
 app.get("/", (_, res) => {
   res.send("<h1>Hello! World!</h1>");
