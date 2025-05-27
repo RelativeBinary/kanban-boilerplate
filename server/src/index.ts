@@ -36,5 +36,6 @@ app.get('/tasks', async (_, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log('>:3 Server running on port:', PORT);
+  console.log('configured origin:', ORIGIN);
+  console.log('🔥 Server running on port:', PORT);
 });
