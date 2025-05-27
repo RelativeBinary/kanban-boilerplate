@@ -13,6 +13,9 @@ export const DashboardPage = () => {
           <Typography gutterBottom>
             This is a task card
           </Typography>
+           {tasks && tasks.map((task) => {return (
+              <div key={`task-${task.id}`}>{task.name} : stage - ${task.stage}</div>
+            )})}
         </CardContent>
       </Card>
        <Card variant="outlined" className={styles['inprogress-card']}>

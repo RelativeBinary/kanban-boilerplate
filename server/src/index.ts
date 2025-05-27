@@ -6,10 +6,11 @@ import supabase from './supabaseClient.js';
 // load env variables fomr dotenv first
 config();
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.LOCAL || 3000;
+const LOCAL_UI_PORT = process.env.LOCAL_UI_PORT || 3001;
 const allowedOrigins = [
   'https://kanban-boilerplate.vercel.app',
-  `http://localhost:${PORT}`,
+  `http://localhost:${LOCAL_UI_PORT}`,
 ];
 
 app.use(cors({
@@ -41,7 +42,6 @@ app.get('/tasks', async (_, res) => {
       console.log('error', error);
       throw error;
     }
-
     res.status(200).json(data);
   } catch {
     console.error('Error fetchign users');
@@ -50,6 +50,5 @@ app.get('/tasks', async (_, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log('listneing supabase: ', supabase);
-  console.log(`Server is running on port: ${PORT}`);
+  console.log('Server running on port:', PORT);
 });

@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import { useGet } from "./apiClient";
+import { Task } from "../types/task";
 
 export const useGetAllTasks = () => {
   // 1. stateful stores
-  const [tasks, setTasks] = useState(null);
+  const [tasks, setTasks] = useState<Task[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string>();
 
@@ -20,9 +21,7 @@ export const useGetAllTasks = () => {
       // if (response.status >= 400) {
       //   throw new Error(`HTTP ${response.status}: ${response.statusText}`);
       // }
-      console.log('response status: ', response.status);
-      console.log('response ',response);
-      setTasks(response.data);
+      setTasks(response.data ?? []);
     } catch (err) {
       setError(err instanceof Error ? err.message : "unknown error occurred");
     } finally {

@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const BASE_URL = import.meta.env.VITE_URL || 'ERROR_BAD_ENV_VARS';
+console.log('vite url', import.meta.env.VITE_URL);
 
 const apiClient = axios.create({
   baseURL: BASE_URL,
@@ -12,6 +13,7 @@ const apiClient = axios.create({
 // Define common API methods 
 // url in this context is actually added ontop of the baseURL cofiguration
 export const useGet = (url:  string, config = {}) => {
+  console.log('url', url);
   return apiClient.get(url, config);
 }
 
