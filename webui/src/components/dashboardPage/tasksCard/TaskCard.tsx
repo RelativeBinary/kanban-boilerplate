@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { Task as TaskType } from "../../types/task";
+import { Task as TaskType } from "../../../types/task";
 import styles from "./TaskCard.module.css";
 
 export interface TaskProps {

@@ -1,0 +1,14 @@
+/* Definitely one to practice more */
+:global(.MuiCard-root).card {
+  flex: 1;
+  color: var(--neutral-100);
+  background-color: var(--neutral-800);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform; /* Optimize for animations */
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}

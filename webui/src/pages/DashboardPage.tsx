@@ -7,35 +7,19 @@ import {
 } from "@mui/material";
 import styles from "./DashboardPage.module.css";
 import { useGetAllTasks } from "../services/useGetTasks";
-import { TaskCard } from "../components/dashboardPage/TaskCard";
+import { TaskCard } from "../components/dashboardPage/tasksCard/TaskCard";
+import { TasksCard } from "../components/dashboardPage/TasksCard";
 
 export const DashboardPage = () => {
   const { tasks, loading, error } = useGetAllTasks();
 
   return (
     <Paper className={styles["dashboard"]}>
-      <Card variant="outlined" className={styles["backlog-card"]}>
-        <CardContent className={styles["card-content"]}>
-          <Typography gutterBottom>
-            <h1>Backlog</h1>
-          </Typography>
-          {tasks && !loading && !error && tasks.map((task) => <TaskCard task={task} />)}
-        </CardContent>
-      </Card>
-      <Card variant="outlined" className={styles["inprogress-card"]}>
-        <CardContent>
-          <Typography gutterBottom>
-            <h1>Inprogress</h1>
-          </Typography>
-        </CardContent>
-      </Card>
-      <Card variant="outlined" className={styles["complete-card"]}>
-        <CardContent>
-          <Typography gutterBottom>
-            <h1>Complete</h1>
-          </Typography>
-        </CardContent>
-      </Card>
+      {/* turn this into a TasksCard remeber it should be repeatable for practice */}
+      {/* TODO apply a staggered fade in float up animation effect with backlog first, inprog second, complete last */}
+      <TasksCard title={'Backlog'} loading={loading} stageFilter={1} tasks={tasks} error={error} />
+      <TasksCard title={'Inprogress'} loading={loading} stageFilter={2} tasks={tasks} error={error} />
+      <TasksCard title={'Complete'} loading={loading} stageFilter={3} tasks={tasks} error={error} />
     </Paper>
   );
 };
