@@ -34,6 +34,12 @@
   flex: 1;
 }
 
+.dashboard .card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
 
 /* Horizontal dashboard card animations */
 @media (min-width: 769px) {
