@@ -13,11 +13,12 @@ const apiClient = axios.create({
 // Define common API methods 
 // url in this context is actually added ontop of the baseURL cofiguration
 export const useGet = (url:  string, config = {}) => {
-  console.log('url', url);
+  console.log('useGet', url);
   return apiClient.get(url, config);
 }
 
 export const usePost = <T = unknown>(url: string, data: T, config = {}) => {
+  console.log('usePost', url);
   return apiClient.post(url, data, config);
 }
 
@@ -39,7 +40,7 @@ export const useDelete = (url: string, config = {}) => {
   return apiClient.delete(url, config);
 }
 
-// Repetions here 
+// Repetitions here 
 const apiClient1 = axios.create({
   baseURL: BASE_URL,
   headers: {

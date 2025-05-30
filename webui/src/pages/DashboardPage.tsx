@@ -7,19 +7,83 @@ import {
 } from "@mui/material";
 import styles from "./DashboardPage.module.css";
 import { useGetAllTasks } from "../services/useGetTasks";
-import { TaskCard } from "../components/dashboardPage/tasksCard/TaskCard";
 import { TasksCard } from "../components/dashboardPage/TasksCard";
+import { useEffect, useState } from "react";
+import { Task } from "../types/task";
+import { useUpdateTask } from "../services/useUpdateTask";
 
 export const DashboardPage = () => {
-  const { tasks, loading, error } = useGetAllTasks();
+  const { tasks: initialTasks, loading, error } = useGetAllTasks();
+  const {
+    updateTask,
+    loading: updateLoading,
+    error: updateError,
+  } = useUpdateTask();
+  const [tasks, setTasks] = useState<Task[]>([]);
 
+  useEffect(() => {
+    if (initialTasks) {
+      setTasks(initialTasks);
+    }
+  }, [initialTasks]);
+
+  const onTaskUpdate = async (updatedTask: Task) => {
+    let targetTask: Task | undefined = tasks.find(
+      (task) => task.id === updatedTask.id
+    );
+
+    if (!targetTask) {
+      console.log("task not found");
+      return;
+    }
+    // optimistic update
+    setTasks([
+      updatedTask,
+      ...tasks.filter((task) => task.id !== updatedTask.id),
+    ]);
+
+    try {
+      await updateTask(updatedTask);
+    } catch (err) {
+      // rollback, i actually dont see how this would restore the exact original but w/e
+      setTasks((prevTasks) =>
+        prevTasks.map((task) =>
+          task.id === updatedTask.id ? targetTask : task
+        )
+      );
+      console.log("Failed to update task:", updateError || err);
+    }
+  };
+
+  // TODO update the stage of a task
   return (
     <Paper className={styles["dashboard"]}>
       {/* turn this into a TasksCard remeber it should be repeatable for practice */}
       {/* TODO apply a staggered fade in float up animation effect with backlog first, inprog second, complete last */}
-      <TasksCard title={'Backlog'} loading={loading} stageFilter={1} tasks={tasks} error={error} />
-      <TasksCard title={'Inprogress'} loading={loading} stageFilter={2} tasks={tasks} error={error} />
-      <TasksCard title={'Complete'} loading={loading} stageFilter={3} tasks={tasks} error={error} />
+      <TasksCard
+        title={"Planned"}
+        loading={loading}
+        stageFilter={1}
+        tasks={tasks}
+        error={error}
+        onTaskUpdate={onTaskUpdate}
+      />
+      <TasksCard
+        title={"Inprogress"}
+        loading={loading}
+        stageFilter={2}
+        tasks={tasks}
+        error={error}
+        onTaskUpdate={onTaskUpdate}
+      />
+      <TasksCard
+        title={"Complete"}
+        loading={loading}
+        stageFilter={3}
+        tasks={tasks}
+        error={error}
+        onTaskUpdate={onTaskUpdate}
+      />
     </Paper>
   );
 };

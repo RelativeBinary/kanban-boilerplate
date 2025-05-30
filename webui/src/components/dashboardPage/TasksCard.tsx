@@ -1,29 +1,43 @@
 import { Card, CardContent, Typography } from "@mui/material";
 import { error } from "console";
 import { TaskCard } from "./tasksCard/TaskCard";
-import styles from './TasksCard.module.css';
+import styles from "./TasksCard.module.css";
 import { Task } from "../../types/task";
 
 export interface TasksCardProps {
   title: string;
   loading: boolean;
-  stageFilter: number
+  stageFilter: number;
   tasks?: Task[];
   error?: string;
+  onTaskUpdate: (updatedTask: Task) => void;
 }
 
-export const TasksCard = ({title, loading, stageFilter, tasks, error, ...props}: TasksCardProps ) => {
+export const TasksCard = ({
+  title,
+  loading,
+  stageFilter,
+  tasks,
+  error,
+  onTaskUpdate,
+  ...props
+}: TasksCardProps) => {
   return (
-    <Card id="cop"variant="outlined" className={styles["card"]} {...props} >
+    <Card id="cop" variant="outlined" className={styles["card"]} {...props}>
       <CardContent className={styles["card-content"]}>
-        <Typography gutterBottom>
-          <h1>{title}</h1>
-        </Typography>
+        <h1>{title}</h1>
         {tasks &&
           !loading &&
           !error &&
           tasks.map((task, index) =>
-            task.stage === stageFilter ? <TaskCard task={task} index={index} /> : null
+            task.stage === stageFilter ? (
+              <TaskCard
+                key={task.id}
+                task={task}
+                index={index}
+                onTaskUpdate={onTaskUpdate}
+              />
+            ) : null
           )}
       </CardContent>
     </Card>
