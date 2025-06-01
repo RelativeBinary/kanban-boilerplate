@@ -48,21 +48,49 @@ app.post("/task/:id", async (req, res) => {
       .eq("id", taskId);
 
     if (error) {
-      console.log('error 😭', error, data);
+      console.log("error 😭", error, data);
       res.status(400).json({
         success: false,
         error: error.message,
       });
     } else {
       res.status(200).json({
-      // Send response!
-      success: true,
-      data: data,
-    });
+        // Send response!
+        success: true,
+        data: data,
+      });
     }
   } catch (err) {
     res.status(500).json({
       // Send error response!
+      success: false,
+      error: err.message,
+    });
+  }
+});
+
+app.delete("/task/:id", async (req, res) => {
+  try {
+    const taskId = req.params.id;
+    const { data, error } = await supabase
+      .from("tasks")
+      .delete()
+      .eq("id", taskId);
+
+    if (error) {
+      console.log("error 😭", error, data);
+      res.status(400).json({
+        success: false,
+        error: error.message,
+      });
+    } else {
+      res.status(200).json({
+        success: true,
+        data: data,
+      });
+    }
+  } catch (err) {
+    res.status(500).json({
       success: false,
       error: err.message,
     });
