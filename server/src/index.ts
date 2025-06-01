@@ -75,7 +75,7 @@ app.delete("/task/:id", async (req, res) => {
     const { data, error } = await supabase
       .from("tasks")
       .delete()
-      .eq("id", taskId);
+      .match({id: taskId});
 
     if (error) {
       console.log("error 😭", error, data);
