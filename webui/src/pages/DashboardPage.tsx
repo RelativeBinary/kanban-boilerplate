@@ -11,15 +11,21 @@ import { TasksCard } from "../components/dashboardPage/TasksCard";
 import { useEffect, useState } from "react";
 import { Task } from "../types/task";
 import { useUpdateTask } from "../services/useUpdateTask";
+import { useDeleteTask } from "../services/useDeleteTask";
 
 export const DashboardPage = () => {
+  const [tasks, setTasks] = useState<Task[]>([]);
   const { tasks: initialTasks, loading, error } = useGetAllTasks();
   const {
     updateTask,
     loading: updateLoading,
     error: updateError,
   } = useUpdateTask();
-  const [tasks, setTasks] = useState<Task[]>([]);
+  const {
+    deleteTask,
+    loading: deleteLoading,
+    error: deleteError,
+  } = useDeleteTask();
 
   useEffect(() => {
     if (initialTasks) {
@@ -52,6 +58,25 @@ export const DashboardPage = () => {
         )
       );
       console.log("Failed to update task:", updateError || err);
+    }
+  };
+
+  const onTaskDelete = async (targetTaskId: number) => {
+    let targetTask = tasks.find((task) => task.id === targetTaskId);
+    if (!targetTask) {
+      console.log("task not found");
+      return;
+    }
+
+    // optimistic delete
+    setTasks((prevTasks) =>
+      prevTasks.filter((tasks) => tasks.id !== targetTaskId)
+    );
+
+    try {
+      await deleteTask(targetTaskId);
+    } catch (err) {
+      setTasks([targetTask, ...tasks]);
     }
   };
 

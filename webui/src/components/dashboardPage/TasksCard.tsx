@@ -11,6 +11,7 @@ export interface TasksCardProps {
   tasks?: Task[];
   error?: string;
   onTaskUpdate: (updatedTask: Task) => void;
+  onTaskDelete: (targetTaskId: number) => void;
 }
 
 export const TasksCard = ({
@@ -20,6 +21,7 @@ export const TasksCard = ({
   tasks,
   error,
   onTaskUpdate,
+  onTaskDelete,
   ...props
 }: TasksCardProps) => {
   return (
@@ -36,6 +38,7 @@ export const TasksCard = ({
                 task={task}
                 index={index}
                 onTaskUpdate={onTaskUpdate}
+                onTaskDelete={onTaskDelete}
               />
             ) : null
           )}

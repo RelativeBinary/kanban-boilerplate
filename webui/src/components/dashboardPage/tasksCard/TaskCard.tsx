@@ -6,12 +6,14 @@ export interface TaskProps {
   task: TaskType;
   index?: number;
   onTaskUpdate: (updatedTask: Task) => void;
+  onTaskDelete: (targetTaskId: number) => void;
 }
 
 export const TaskCard = ({
   task,
   index,
   onTaskUpdate,
+  onTaskDelete,
 }: TaskProps): React.ReactNode => {
   const cardRef = useRef<HTMLDivElement>(null);
 
@@ -48,9 +50,25 @@ export const TaskCard = ({
       <h3>{task.name}</h3>
       {/* <div>stage - {task.stage}</div> */}
       {/* <div>{task.desc}</div> */}
-      <div className={styles["controls"]}>
-        <button onClick={decrementTask}>{"<<"}</button>
-        <button onClick={incrementTask}>{">>"}</button>
+      <div className={styles["actions"]}>
+        <div className={styles["left-right-controls"]}>
+          <button onClick={decrementTask}>{"<<"}</button>
+          <button onClick={incrementTask}>{">>"}</button>
+        </div>
+        <div className={styles["additional-actions"]}>
+          <div className={styles["view"]}>
+            <button
+              onClick={() => {
+                console.log("editing modal");
+              }}
+            >
+              edit
+            </button>
+          </div>
+          <div className={styles["delete"]}>
+            <button onClick={() => onTaskDelete(task.id)}>delete</button>
+          </div>
+        </div>
       </div>
     </div>
   );

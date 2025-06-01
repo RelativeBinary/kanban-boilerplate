@@ -6,6 +6,9 @@
   padding: 8px;
   opacity: 0;
   transform: translateY(20px);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .task-card.animate {
@@ -13,11 +16,23 @@
 }
 
 .task-card:hover {
-  box-shadow: 0 2px 20px rgba(255, 255, 255, 0.5)
+  box-shadow: 0 2px 20px rgba(255, 255, 255, 0.5);
 }
 
-.controls {
-  display:flex;
+.actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.left-right-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.additional-actions {
+  display: flex;
+  flex-direction: row;
   gap: 8px;
 }
 

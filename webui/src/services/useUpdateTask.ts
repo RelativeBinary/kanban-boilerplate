@@ -13,12 +13,12 @@ export const useUpdateTask = () => {
       const response = await usePost(`/task/${taskData.id}`, taskData);
       return response.data;
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'unknown error occurred'); 
+      setError(err instanceof Error ? err.message : "unknown error occurred");
       throw err;
     } finally {
       setLoading(false);
     }
   };
 
-  return {updateTask, loading, error};
+  return { updateTask, loading, error };
 };
