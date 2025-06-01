@@ -76,7 +76,7 @@ export const DashboardPage = () => {
     try {
       await deleteTask(targetTaskId);
     } catch (err) {
-      setTasks([targetTask, ...tasks]);
+      setTasks([targetTask, ...tasks.filter(task => task.id !== targetTask.id)]);
     }
   };
 
@@ -92,6 +92,7 @@ export const DashboardPage = () => {
         tasks={tasks}
         error={error}
         onTaskUpdate={onTaskUpdate}
+        onTaskDelete={onTaskDelete}
       />
       <TasksCard
         title={"Inprogress"}
@@ -100,6 +101,7 @@ export const DashboardPage = () => {
         tasks={tasks}
         error={error}
         onTaskUpdate={onTaskUpdate}
+        onTaskDelete={onTaskDelete}
       />
       <TasksCard
         title={"Complete"}
@@ -108,6 +110,7 @@ export const DashboardPage = () => {
         tasks={tasks}
         error={error}
         onTaskUpdate={onTaskUpdate}
+        onTaskDelete={onTaskDelete}
       />
     </Paper>
   );

@@ -11,6 +11,7 @@ export const useDeleteTask = () => {
       return response.data;
     } catch (err) {
       setError(err instanceof Error ? err.message : "unknown error occurred");
+      throw err;
     } finally {
       setLoading(false);
     }
