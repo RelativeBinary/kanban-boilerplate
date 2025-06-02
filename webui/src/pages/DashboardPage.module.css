@@ -9,3 +9,12 @@
   padding: 18px;
   gap: 12px;
 }
+
+.create-button-container {
+  box-sizing: border-box;
+  padding: 8px;
+}
+
+.create-button {
+  width: 100%;
+}

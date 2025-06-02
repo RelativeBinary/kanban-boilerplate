@@ -97,6 +97,36 @@ app.delete("/task/:id", async (req, res) => {
   }
 });
 
+app.post("/task", async (req, res) => {
+  try {
+    const newTask = req.body;
+    const { data, error } = await supabase
+      .from("tasks")
+      .insert(newTask)
+      .select();
+
+    if (error) {
+      console.log("error 😭", error, data);
+      res.status(400).json({
+        success: false,
+        error: error.message,
+      });
+    } else {
+      console.log('successfully created task', data)
+      res.status(200).json({
+        success: true,
+        result: data,
+      });
+    }
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      error: err.message,
+    });
+  }
+});
+
+
 app.listen(PORT, () => {
   console.log("configured origin:", ORIGIN);
   console.log("🔥 Server running on port:", PORT);

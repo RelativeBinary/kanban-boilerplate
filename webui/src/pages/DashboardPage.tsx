@@ -9,9 +9,10 @@ import styles from "./DashboardPage.module.css";
 import { useGetAllTasks } from "../services/useGetTasks";
 import { TasksCard } from "../components/dashboardPage/TasksCard";
 import { useEffect, useState } from "react";
-import { Task } from "../types/task";
+import { CreateTask, Task } from "../types/task";
 import { useUpdateTask } from "../services/useUpdateTask";
 import { useDeleteTask } from "../services/useDeleteTask";
+import { useCreateTask } from "../services/useCreateTask";
 
 export const DashboardPage = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -26,6 +27,11 @@ export const DashboardPage = () => {
     loading: deleteLoading,
     error: deleteError,
   } = useDeleteTask();
+  const {
+    createTask,
+    loading: createLoading,
+    error: createError,
+  } = useCreateTask();
 
   useEffect(() => {
     if (initialTasks) {
@@ -62,6 +68,7 @@ export const DashboardPage = () => {
   };
 
   const onTaskDelete = async (targetTaskId: number) => {
+    // TODO add confirmation dialog
     let targetTask = tasks.find((task) => task.id === targetTaskId);
     if (!targetTask) {
       console.log("task not found");
@@ -76,9 +83,40 @@ export const DashboardPage = () => {
     try {
       await deleteTask(targetTaskId);
     } catch (err) {
-      setTasks([targetTask, ...tasks.filter(task => task.id !== targetTask.id)]);
+      setTasks([
+        targetTask,
+        ...tasks.filter((task) => task.id !== targetTask.id),
+      ]);
     }
   };
+
+  const onTaskCreate = async (newTask: CreateTask) => {
+    // optimistic add
+    try {
+      const response = await createTask(newTask);
+      if (response.status >= 400) {
+        console.log('an unknown error occurred while creating');
+      } else {
+        console.log('successfully created new task', response.data);
+        setTasks(prev => [...response.data.result, ...prev])
+      }
+    } catch (err) {
+      throw err;
+    }
+  };
+
+  const createButton = (
+    <div className={styles["create-button-container"]}>
+      <button
+        className={styles["create-button"]}
+        onClick={() =>
+          onTaskCreate({ name: "foo task", stage: 1, desc: "something" })
+        }
+      >
+        create
+      </button>
+    </div>
+  );
 
   // TODO update the stage of a task
   return (
@@ -93,6 +131,7 @@ export const DashboardPage = () => {
         error={error}
         onTaskUpdate={onTaskUpdate}
         onTaskDelete={onTaskDelete}
+        footerComponent={createButton}
       />
       <TasksCard
         title={"Inprogress"}

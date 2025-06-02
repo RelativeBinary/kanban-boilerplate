@@ -4,3 +4,5 @@ export interface Task {
   desc?: string;
   stage: number;
 };
+
+export type CreateTask = Omit<Task, 'id'>;

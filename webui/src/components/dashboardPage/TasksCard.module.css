@@ -5,6 +5,9 @@
   background-color: var(--neutral-800);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   will-change: transform; /* Optimize for animations */
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
 }
 
 .card-content {

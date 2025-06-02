@@ -12,6 +12,7 @@ export interface TasksCardProps {
   error?: string;
   onTaskUpdate: (updatedTask: Task) => void;
   onTaskDelete: (targetTaskId: number) => void;
+  footerComponent?: React.ReactNode;
 }
 
 export const TasksCard = ({
@@ -22,6 +23,7 @@ export const TasksCard = ({
   error,
   onTaskUpdate,
   onTaskDelete,
+  footerComponent,
   ...props
 }: TasksCardProps) => {
   return (
@@ -43,6 +45,9 @@ export const TasksCard = ({
             ) : null
           )}
       </CardContent>
+      <div>
+        {footerComponent}
+      </div>
     </Card>
   );
 };
