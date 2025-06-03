@@ -131,7 +131,7 @@ export const DashboardPage = () => {
         error={error}
         onTaskUpdate={onTaskUpdate}
         onTaskDelete={onTaskDelete}
-        footerComponent={createButton}
+        topRightComponent={createButton}
       />
       <TasksCard
         title={"Inprogress"}

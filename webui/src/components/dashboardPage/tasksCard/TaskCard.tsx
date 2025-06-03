@@ -47,7 +47,12 @@ export const TaskCard = ({
 
   return (
     <div ref={cardRef} key={`task-${task.id}`} className={styles["task-card"]}>
-      <h3>{task.name}</h3>
+      <div className={styles["task-header"]}>
+        <h3>{task.name}</h3>
+        <div className={styles["small-menu"]}>
+          <button>more</button>
+        </div>
+      </div>
       {/* <div>stage - {task.stage}</div> */}
       {/* <div>{task.desc}</div> */}
       <div className={styles["actions"]}>

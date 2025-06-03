@@ -13,6 +13,7 @@ export interface TasksCardProps {
   onTaskUpdate: (updatedTask: Task) => void;
   onTaskDelete: (targetTaskId: number) => void;
   footerComponent?: React.ReactNode;
+  topRightComponent?: React.ReactNode;
 }
 
 export const TasksCard = ({
@@ -24,12 +25,16 @@ export const TasksCard = ({
   onTaskUpdate,
   onTaskDelete,
   footerComponent,
+  topRightComponent,
   ...props
 }: TasksCardProps) => {
   return (
     <Card id="cop" variant="outlined" className={styles["card"]} {...props}>
       <CardContent className={styles["card-content"]}>
-        <h1>{title}</h1>
+        <div className={styles["card-header"]}>
+          <h1>{title}</h1>
+          {topRightComponent}
+        </div>
         {tasks &&
           !loading &&
           !error &&

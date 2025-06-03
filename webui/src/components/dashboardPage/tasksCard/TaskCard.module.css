@@ -36,6 +36,26 @@
   gap: 8px;
 }
 
+.task-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+@media (max-width: 1130px) {
+  .additional-actions {
+    visibility: hidden;
+  }
+}
+
+@media (min-width: 1130px) {
+  .small-menu {
+    visibility: hidden;
+  }
+}
+
+
+
 @keyframes fadeInFromBelow {
   0% {
     opacity: 0;

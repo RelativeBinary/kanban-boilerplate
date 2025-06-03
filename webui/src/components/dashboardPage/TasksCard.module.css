@@ -8,10 +8,17 @@
   display: flex;
   justify-content: space-between;
   flex-direction: column;
+  overflow-y: auto;
 }
 
 .card-content {
   display: flex;
   flex-direction: column;
   gap: 12px;
+}
+
+.card-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }

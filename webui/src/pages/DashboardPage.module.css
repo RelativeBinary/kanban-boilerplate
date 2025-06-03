@@ -16,5 +16,11 @@
 }
 
 .create-button {
-  width: 100%;
+  width: auto;
+}
+
+@media (max-width: 768px) {
+  .dashboard {
+    flex-direction: column;
+  }
 }
