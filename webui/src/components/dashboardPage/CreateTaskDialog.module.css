@@ -1,0 +1,14 @@
+.dialog {
+  display: flex;
+  justify-self: center;
+  gap: 18px;
+}
+
+.create-button-container {
+  box-sizing: border-box;
+  padding: 8px;
+}
+
+.create-button {
+  width: auto;
+}

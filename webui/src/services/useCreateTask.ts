@@ -4,12 +4,13 @@ import { CreateTask } from "../types/task";
 import { AxiosResponse } from "axios";
 
 export const useCreateTask = () => {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string>();
 
   const createTask = async (newTask: CreateTask): Promise<AxiosResponse<any, any>> => {
     try {
       setLoading(true);
+      setError(undefined);
       const response = await usePost(`/task`, newTask );
       return response;
     } catch (err) {

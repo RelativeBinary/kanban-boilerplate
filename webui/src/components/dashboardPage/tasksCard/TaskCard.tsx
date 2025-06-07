@@ -1,6 +1,12 @@
 import { useEffect, useRef } from "react";
 import { Task, Task as TaskType } from "../../../types/task";
 import styles from "./TaskCard.module.css";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
+import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
+import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
+import { Button, IconButton } from "@mui/material";
 
 export interface TaskProps {
   task: TaskType;
@@ -50,28 +56,41 @@ export const TaskCard = ({
       <div className={styles["task-header"]}>
         <h3>{task.name}</h3>
         <div className={styles["small-menu"]}>
-          <button>more</button>
+          <IconButton className={styles["task__button"]} onClick={() => {}}>
+            <MoreVertIcon />
+          </IconButton>
         </div>
       </div>
       {/* <div>stage - {task.stage}</div> */}
       {/* <div>{task.desc}</div> */}
       <div className={styles["actions"]}>
         <div className={styles["left-right-controls"]}>
-          <button onClick={decrementTask}>{"<<"}</button>
-          <button onClick={incrementTask}>{">>"}</button>
+          <IconButton
+            className={styles["task__button"]}
+            onClick={decrementTask}
+          >
+            <KeyboardDoubleArrowLeftIcon />
+          </IconButton>
+          <IconButton
+            className={styles["task__button"]}
+            onClick={incrementTask}
+          >
+            <KeyboardDoubleArrowRightIcon />
+          </IconButton>
         </div>
         <div className={styles["additional-actions"]}>
           <div className={styles["view"]}>
-            <button
-              onClick={() => {
-                console.log("editing modal");
-              }}
-            >
-              edit
-            </button>
+            <IconButton className={styles["task__button"]} onClick={() => {}}>
+              <EditIcon />
+            </IconButton>
           </div>
           <div className={styles["delete"]}>
-            <button onClick={() => onTaskDelete(task.id)}>delete</button>
+            <IconButton
+              className={styles["task__button"]}
+              onClick={() => onTaskDelete(task.id)}
+            >
+              <DeleteIcon />
+            </IconButton>
           </div>
         </div>
       </div>
