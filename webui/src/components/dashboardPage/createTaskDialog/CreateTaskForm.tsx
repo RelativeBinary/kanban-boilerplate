@@ -1,7 +1,7 @@
 import { Alert, Button, Input, TextField } from "@mui/material";
 import styles from "./CreateTaskForm.module.css";
 import { useState } from "react";
-import { CreateTask } from "../../types/task";
+import { CreateTask } from "../../../types/task";
 
 export interface CreateTaskFormProps {
   onCreate: () => void;

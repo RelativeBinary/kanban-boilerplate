@@ -1,0 +1,6 @@
+.actions {
+  display: flex;
+  flex-direction: row;
+  gap: 18px;
+  margin-top: 18px;
+}

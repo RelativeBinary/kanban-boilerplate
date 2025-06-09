@@ -7,6 +7,8 @@ import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArro
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import { Button, IconButton } from "@mui/material";
+import { useOnOpen } from "../../../hooks/useOpen";
+import { ConfirmationDialog } from "./taskCard/ConfirmationDialog";
 
 export interface TaskProps {
   task: TaskType;
@@ -22,6 +24,7 @@ export const TaskCard = ({
   onTaskDelete,
 }: TaskProps): React.ReactNode => {
   const cardRef = useRef<HTMLDivElement>(null);
+  const { open: openDeleteDialog, handleOpen, handleClose } = useOnOpen();
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -87,13 +90,19 @@ export const TaskCard = ({
           <div className={styles["delete"]}>
             <IconButton
               className={styles["task__button"]}
-              onClick={() => onTaskDelete(task.id)}
+              onClick={handleOpen}
             >
               <DeleteIcon />
             </IconButton>
           </div>
         </div>
       </div>
+      <ConfirmationDialog
+        title={"Delete task?"}
+        open={openDeleteDialog}
+        onCancel={handleClose}
+        onConfirm={() => onTaskDelete(task.id)}
+      />
     </div>
   );
 };

@@ -12,7 +12,7 @@ import styles from "./CreateTaskDialog.module.css";
 import { CreateTask, Task } from "../../types/task";
 import { loadEnvFile } from "process";
 import { useOnOpen } from "../../hooks/useOpen";
-import { CreateTaskForm } from "./CreateTaskForm";
+import { CreateTaskForm } from "./createTaskDialog/CreateTaskForm";
 
 export interface CreateTaskDialogProps {
   /**
@@ -51,6 +51,8 @@ export const CreateTaskDialog = ({ onTaskCreate }: CreateTaskDialogProps) => {
     } catch (err) {
       console.log("Error creating task:", err);
       handleClose();
+    } finally {
+      setNewTask(defaultValue);
     }
   };
 
