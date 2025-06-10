@@ -93,14 +93,14 @@ app.get("/tasks", async (_, res) => {
 });
 
 app.post("/task/:id", async (req, res) => {
-  // Add 'res' parameter!
   try {
     const taskId = req.params.id;
-    const { stage } = req.body;
-    const { data, error } = await supabase // Add 'const { data, error } ='
+    const { stage, desc, name } = req.body;
+    const { data, error } = await supabase
       .from("tasks")
-      .update({ stage })
-      .eq("id", taskId);
+      .update({ stage, desc, name })
+      .eq("id", taskId)
+      .select();
 
     if (error) {
       console.log("error 😭", error, data);
@@ -110,14 +110,12 @@ app.post("/task/:id", async (req, res) => {
       });
     } else {
       res.status(200).json({
-        // Send response!
         success: true,
-        data: data,
+        result: data,
       });
     }
   } catch (err) {
     res.status(500).json({
-      // Send error response!
       success: false,
       error: err.message,
     });

@@ -1,0 +1,3 @@
+:global(.MuiIconButton-root).task__button {
+  color: var(--neutral-300);
+}

@@ -5,6 +5,7 @@ import styles from "./ConfirmationDialog.module.css";
 
 export interface ConfirmationDialogProps {
   title: string;
+  message: string;
   open: boolean;
   onCancel: () => void;
   onConfirm: () => void;
@@ -12,6 +13,7 @@ export interface ConfirmationDialogProps {
 
 export const ConfirmationDialog = ({
   title,
+  message,
   open,
   onCancel,
   onConfirm,
@@ -20,7 +22,7 @@ export const ConfirmationDialog = ({
     <Dialog open={open} onClose={onCancel}>
       <DialogTitle id="confirmation-dialog">{title}</DialogTitle>
       <DialogContent>
-        Are you sure you want to delete this task?
+        {message}
         <div className={styles["actions"]}>
           <Button onClick={onConfirm}>Confirm</Button>
           <Button onClick={onCancel}>Cancel</Button>

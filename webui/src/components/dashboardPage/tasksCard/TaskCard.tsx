@@ -9,6 +9,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import { Button, IconButton } from "@mui/material";
 import { useOnOpen } from "../../../hooks/useOpen";
 import { ConfirmationDialog } from "./taskCard/ConfirmationDialog";
+import { EditTaskDialog } from "./taskCard/EditTaskDialog";
 
 export interface TaskProps {
   task: TaskType;
@@ -83,15 +84,13 @@ export const TaskCard = ({
         </div>
         <div className={styles["additional-actions"]}>
           <div className={styles["view"]}>
-            <IconButton className={styles["task__button"]} onClick={() => {}}>
-              <EditIcon />
-            </IconButton>
+            <EditTaskDialog
+              targetTask={task}
+              onSuccessfulEdit={onTaskUpdate}
+            />
           </div>
           <div className={styles["delete"]}>
-            <IconButton
-              className={styles["task__button"]}
-              onClick={handleOpen}
-            >
+            <IconButton className={styles["task__button"]} onClick={handleOpen}>
               <DeleteIcon />
             </IconButton>
           </div>
@@ -99,6 +98,7 @@ export const TaskCard = ({
       </div>
       <ConfirmationDialog
         title={"Delete task?"}
+        message={"Are you sure you want to delete this task?"}
         open={openDeleteDialog}
         onCancel={handleClose}
         onConfirm={() => onTaskDelete(task.id)}

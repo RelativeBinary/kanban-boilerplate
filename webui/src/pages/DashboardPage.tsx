@@ -87,7 +87,7 @@ export const DashboardPage = () => {
   };
 
   const onTaskCreate = async (newTask: Task) => {
-    console.log('adding new task to state', newTask);
+    console.log("adding new task to state", newTask);
     setTasks((prev) => [newTask, ...prev]);
   };
 
