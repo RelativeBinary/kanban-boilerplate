@@ -31,7 +31,7 @@ export const DashboardPage = () => {
   }, [initialTasks]);
 
   useEffect(() => {
-      alert('Please refresh the page of no tasks load. \nThis demo runs on free platforms a may a minute before the backend api is up and running');
+      alert('Please refresh the page if no tasks load. \nThis demo runs on free platforms a may a minute before the backend api is up and running');
   }, []);
 
   const onTaskUpdate = async (updatedTask: Task) => {
