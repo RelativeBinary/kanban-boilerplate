@@ -1,33 +1,38 @@
 import {
-  Button,
   ClickAwayListener,
   IconButton,
   MenuItem,
   MenuList,
   Popper,
 } from "@mui/material";
-import { useOnOpen } from "../../../../hooks/useOpen";
-import { useRef } from "react";
+import { useState } from "react";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import styles from './MoreMenu.module.css';
+import styles from "./MoreMenu.module.css";
 
 export const MoreMenu = () => {
-  const { open, handleOpen, handleClose } = useOnOpen();
-  const anchorRef = useRef<HTMLButtonElement>(null);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(anchorEl ? null : event.currentTarget);
+  };
+  const open = Boolean(anchorEl);
+  const id = open ? "simple-popper" : undefined;
   return (
     <>
-      <IconButton ref={anchorRef} onClick={handleOpen} className={styles["task__button"]}>
+      <IconButton
+        id={id}
+        onClick={handleClick}
+        className={styles["task__button"]}
+      >
         <MoreVertIcon />
       </IconButton>
       <Popper
+        id={id}
         open={open}
-        anchorEl={anchorRef.current}
+        anchorEl={anchorEl}
         placement={"bottom-start"}
-        transition
-        disablePortal
       >
-        <ClickAwayListener onClickAway={handleClose}>
-          <MenuList className={styles['menu']}>
+        <ClickAwayListener onClickAway={() => handleClick}>
+          <MenuList className={styles["menu"]}>
             <MenuItem>Edit</MenuItem>
             <MenuItem>Delete</MenuItem>
           </MenuList>

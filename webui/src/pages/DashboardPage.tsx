@@ -1,18 +1,13 @@
 import {
-  Card,
-  CardContent,
-  CardHeader,
   Paper,
-  Typography,
 } from "@mui/material";
 import styles from "./DashboardPage.module.css";
 import { useGetAllTasks } from "../services/useGetTasks";
 import { TasksCard } from "../components/dashboardPage/TasksCard";
 import { useEffect, useState } from "react";
-import { CreateTask, Task } from "../types/task";
+import { Task } from "../types/task";
 import { useUpdateTask } from "../services/useUpdateTask";
 import { useDeleteTask } from "../services/useDeleteTask";
-import { useCreateTask } from "../services/useCreateTask";
 import { CreateTaskDialog } from "../components/dashboardPage/CreateTaskDialog";
 
 export const DashboardPage = () => {
@@ -34,6 +29,10 @@ export const DashboardPage = () => {
       setTasks(initialTasks);
     }
   }, [initialTasks]);
+
+  useEffect(() => {
+      alert('Please refresh the page of no tasks load. \nThis demo runs on free platforms a may a minute before the backend api is up and running');
+  }, []);
 
   const onTaskUpdate = async (updatedTask: Task) => {
     let targetTask: Task | undefined = tasks.find(
@@ -87,7 +86,6 @@ export const DashboardPage = () => {
   };
 
   const onTaskCreate = async (newTask: Task) => {
-    console.log("adding new task to state", newTask);
     setTasks((prev) => [newTask, ...prev]);
   };
 
