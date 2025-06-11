@@ -10,6 +10,7 @@ import { Button, IconButton } from "@mui/material";
 import { useOnOpen } from "../../../hooks/useOpen";
 import { ConfirmationDialog } from "./taskCard/ConfirmationDialog";
 import { EditTaskDialog } from "./taskCard/EditTaskDialog";
+import { MoreMenu } from "./taskCard/MoreMenu";
 
 export interface TaskProps {
   task: TaskType;
@@ -60,9 +61,10 @@ export const TaskCard = ({
       <div className={styles["task-header"]}>
         <h3>{task.name}</h3>
         <div className={styles["small-menu"]}>
-          <IconButton className={styles["task__button"]} onClick={() => {}}>
+          {/* <IconButton className={styles["task__button"]} onClick={() => {}}>
             <MoreVertIcon />
-          </IconButton>
+          </IconButton> */}
+          <MoreMenu />
         </div>
       </div>
       {/* <div>stage - {task.stage}</div> */}

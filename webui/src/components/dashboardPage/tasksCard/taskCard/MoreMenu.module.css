@@ -1,0 +1,10 @@
+:global(.MuiIconButton-root).task__button {
+  color: var(--neutral-300);
+}
+
+.menu {
+  color: var(--neutral-100);
+  background-color: var(--neutral-800);
+  box-shadow: 0 2px 9px rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}

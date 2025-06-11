@@ -19,7 +19,7 @@ app.use(
 
 app.get("/", (_, res) => {
   res.send("<h1>Hello world!</h1>");
-})
+});
 
 // what is this suppose to do??
 app.get("/oauth", async (req, _) => {
@@ -34,21 +34,22 @@ app.get("/oauth", async (req, _) => {
       redirectUrl
     );
     const res = await oAuth2Client.getToken(code);
-    const userAccessToken = oAuth2Client.credentials.access_token ?? 'ERROR invalid access token';
-    console.log('token acquired, credentials', oAuth2Client.credentials); 
+    const userAccessToken =
+      oAuth2Client.credentials.access_token ?? "ERROR invalid access token";
+    console.log("token acquired, credentials", oAuth2Client.credentials);
     await getUserData(userAccessToken);
-    console.log('res', res);
+    console.log("res", res);
   } catch (err) {
-    console.log('Error with signing in with goodle', err);
+    console.log("Error with signing in with goodle", err);
   }
 });
 
 import { OAuth2Client } from "google-auth-library";
 
 app.post("/request", async function (_, res) {
-  console.log('request');
-  res.header("Access-Control-Allow-Origin", 'http://localhost:3001');
-  res.header("Access-Control-Allow-Credentials", 'true');
+  console.log("request");
+  res.header("Access-Control-Allow-Origin", "http://localhost:3001");
+  res.header("Access-Control-Allow-Credentials", "true");
   res.header("Referrer-Policy", "no-referrer-when-downgrade");
   // const redirectUrl = "https://kanban-boilerplate.vercel.app";
   const redirectUrl = "http://localhost:3001/oauth";
@@ -79,7 +80,10 @@ const getUserData = async (access_token: string) => {
 
 app.get("/tasks", async (_, res) => {
   try {
-    const { data, error } = await supabase.from("tasks").select();
+    const { data, error } = await supabase
+      .from("tasks")
+      .select()
+      .order("updated_at", { ascending: false });
 
     if (error) {
       console.log("error", error);
@@ -98,7 +102,7 @@ app.post("/task/:id", async (req, res) => {
     const { stage, desc, name } = req.body;
     const { data, error } = await supabase
       .from("tasks")
-      .update({ stage, desc, name })
+      .update({ stage, desc, name, updated_at: new Date().toISOString() })
       .eq("id", taskId)
       .select();
 
