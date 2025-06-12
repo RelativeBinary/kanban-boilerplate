@@ -86,10 +86,7 @@ export const TaskCard = ({
         </div>
         <div className={styles["additional-actions"]}>
           <div className={styles["view"]}>
-            <EditTaskDialog
-              targetTask={task}
-              onSuccessfulEdit={onTaskUpdate}
-            />
+            <EditTaskDialog targetTask={task} onSuccessfulEdit={onTaskUpdate} />
           </div>
           <div className={styles["delete"]}>
             <IconButton className={styles["task__button"]} onClick={handleOpen}>

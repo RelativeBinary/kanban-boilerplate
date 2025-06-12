@@ -1,6 +1,4 @@
-import {
-  Paper,
-} from "@mui/material";
+import { Paper } from "@mui/material";
 import styles from "./DashboardPage.module.css";
 import { useGetAllTasks } from "../services/useGetTasks";
 import { TasksCard } from "../components/dashboardPage/TasksCard";
@@ -30,8 +28,14 @@ export const DashboardPage = () => {
     }
   }, [initialTasks]);
 
+  let alerted = false;
   useEffect(() => {
-      alert('Please refresh the page if no tasks load. \nThis demo runs on free platforms a may a minute before the backend api is up and running');
+    if (!alerted) {
+      alerted = true;
+      alert(
+        "Please refresh the page if no tasks load. \nThis demo runs on free platforms and may take a minute before the api is up and running"
+      );
+    }
   }, []);
 
   const onTaskUpdate = async (updatedTask: Task) => {
