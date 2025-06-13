@@ -64,7 +64,7 @@ export const TaskCard = ({
           {/* <IconButton className={styles["task__button"]} onClick={() => {}}>
             <MoreVertIcon />
           </IconButton> */}
-          <MoreMenu />
+          <MoreMenu task={task} onSuccessfulEdit={onTaskUpdate} onDelete={handleOpen} />
         </div>
       </div>
       {/* <div>stage - {task.stage}</div> */}
@@ -86,7 +86,7 @@ export const TaskCard = ({
         </div>
         <div className={styles["additional-actions"]}>
           <div className={styles["view"]}>
-            <EditTaskDialog targetTask={task} onSuccessfulEdit={onTaskUpdate} />
+            <EditTaskDialog showAsText={false} targetTask={task} onSuccessfulEdit={onTaskUpdate} />
           </div>
           <div className={styles["delete"]}>
             <IconButton className={styles["task__button"]} onClick={handleOpen}>

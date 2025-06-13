@@ -6,16 +6,18 @@ import { useUpdateTask } from "../../../../services/useUpdateTask";
 import EditIcon from "@mui/icons-material/Edit";
 import IconButton from "@mui/material/IconButton";
 import styles from "./EditTaskDialog.module.css";
-import { Dialog, DialogTitle, DialogContent } from "@mui/material";
+import { Dialog, DialogTitle, DialogContent, Button } from "@mui/material";
 import { CreateTaskForm } from "../../createTaskDialog/CreateTaskForm";
 import { EditTaskForm } from "./editTaskDialog/EditTaskForm";
 
 export interface EditTaskDialogProps {
+  showAsText: boolean;
   targetTask: Task;
   onSuccessfulEdit: (sucessfullyEditedTask: Task) => void;
 }
 
 export const EditTaskDialog = ({
+  showAsText,
   targetTask,
   onSuccessfulEdit,
 }: EditTaskDialogProps) => {
@@ -27,7 +29,7 @@ export const EditTaskDialog = ({
   const onSubmitEdit = async () => {
     try {
       const response = await updateTask(editedTask);
-      console.log('Successful task edit', response.result[0]);
+      console.log("Successful task edit", response.result[0]);
       onSuccessfulEdit(response.result[0]);
       handleClose();
     } catch (err) {
@@ -38,9 +40,15 @@ export const EditTaskDialog = ({
 
   return (
     <>
-      <IconButton className={styles["task__button"]} onClick={handleOpen}>
-        <EditIcon />
-      </IconButton>
+      {showAsText ? (
+        <div className={styles["task__button"]} onClick={handleOpen}>
+          {"Edit"}
+        </div>
+      ) : (
+        <IconButton className={styles["task__button"]} onClick={handleOpen}>
+          {showAsText ? "Edit" : <EditIcon />}
+        </IconButton>
+      )}
       <Dialog open={open} onClose={handleClose} className={styles["dialog"]}>
         <DialogTitle id="alert-dialog-title">Edit task</DialogTitle>
         <DialogContent>
