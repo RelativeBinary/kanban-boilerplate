@@ -1,9 +1,5 @@
-import { useEffect, useState } from "react";
-import { useGet } from "./services/apiClient";
 import "./App.css";
 import { DashboardPage } from "./pages/DashboardPage";
-import { UserPage } from "./pages/UserPage";
-import { Paper } from "@mui/material";
 
 function App() {
   // TODO user page stuff 
@@ -24,7 +20,6 @@ function App() {
     <>
       {/* <button onClick={() => auth()}>google button</button> */}
       <DashboardPage />
-      {/* <UserPage /> */}
     </>
   );
 }
