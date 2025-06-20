@@ -22,7 +22,6 @@ export const useGetAllTasks = () => {
       //   throw new Error(`HTTP ${response.status}: ${response.statusText}`);
       // }
       setTasks(response.data.tasks ?? []);
-      console.log('tasks', response);
     } catch (err) {
       setError(err instanceof Error ? err.message : "unknown error occurred");
     } finally {

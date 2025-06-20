@@ -11,6 +11,7 @@ import { useOnOpen } from "../../../hooks/useOpen";
 import { ConfirmationDialog } from "./taskCard/ConfirmationDialog";
 import { EditTaskDialog } from "./taskCard/EditTaskDialog";
 import { MoreMenu } from "./taskCard/MoreMenu";
+import { ViewTaskDialog } from "./taskCard/ViewTaskDialog";
 
 export interface TaskProps {
   task: TaskType;
@@ -86,6 +87,9 @@ export const TaskCard = ({
         </div>
         <div className={styles["additional-actions"]}>
           <div className={styles["view"]}>
+            <ViewTaskDialog showAsText={false} targetTask={task} />
+          </div>
+          <div className={styles["edit"]}>
             <EditTaskDialog showAsText={false} targetTask={task} onSuccessfulEdit={onTaskUpdate} />
           </div>
           <div className={styles["delete"]}>

@@ -10,6 +10,7 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import styles from "./MoreMenu.module.css";
 import { Task } from "../../../../types/task";
 import { EditTaskDialog } from "./EditTaskDialog";
+import { ViewTaskDialog } from "./ViewTaskDialog";
 
 export interface MoreMenuProps {
   task: Task;
@@ -57,7 +58,11 @@ export const MoreMenu = ({task, onSuccessfulEdit, onDelete}: MoreMenuProps) => {
         <ClickAwayListener onClickAway={() => handleClick}>
           <MenuList className={styles["menu"]}>
             <MenuItem>
-              View
+              <ViewTaskDialog 
+                showAsText={true}
+                targetTask={task}
+                onHandleClose={handleClose}
+              />
             </MenuItem>
             <MenuItem>
               <EditTaskDialog

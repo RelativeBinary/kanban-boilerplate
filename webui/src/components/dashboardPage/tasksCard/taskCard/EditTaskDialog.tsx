@@ -29,8 +29,7 @@ export const EditTaskDialog = ({
   const onSubmitEdit = async () => {
     try {
       const response = await updateTask(editedTask);
-      console.log("Successful task edit", response.result[0]);
-      onSuccessfulEdit(response.result[0]);
+      onSuccessfulEdit(response);
       handleClose();
     } catch (err) {
       console.log("Error editing task:", err);

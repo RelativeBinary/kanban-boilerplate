@@ -47,7 +47,8 @@ export const CreateTaskDialog = ({ onTaskCreate }: CreateTaskDialogProps) => {
     }
     try {
       const response = await createTask(newTask);
-      onTaskCreate(response.data.result[0]);
+      console.log('response', response);
+      onTaskCreate(response as unknown as Task);
       handleClose();
     } catch (err) {
       console.log("Error creating task:", err);
