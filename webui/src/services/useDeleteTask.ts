@@ -7,8 +7,8 @@ export const useDeleteTask = () => {
 
   const deleteTask = async (taskId: number) => {
     try {
-      const response = await useDelete(`/task/${taskId}`);
-      return response.data;
+      const response = await useDelete(`/api/task/${taskId}`);
+      return response.data.task;
     } catch (err) {
       setError(err instanceof Error ? err.message : "unknown error occurred");
       throw err;

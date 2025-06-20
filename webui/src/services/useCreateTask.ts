@@ -11,8 +11,8 @@ export const useCreateTask = () => {
     try {
       setLoading(true);
       setError(undefined);
-      const response = await usePost(`/task`, newTask );
-      return response;
+      const response = await usePost(`/api/task`, newTask );
+      return response.data.task;
     } catch (err) {
       setError(err instanceof Error ? err.message : "unknown error occurred");
       throw err;

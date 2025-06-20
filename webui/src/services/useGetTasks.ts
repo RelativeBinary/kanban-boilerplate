@@ -16,12 +16,13 @@ export const useGetAllTasks = () => {
   // 3. actual api calling implementation
   const fetchTasks = async () => {
     try {
-      const response = await useGet("/tasks");
+      const response = await useGet("/api/tasks");
       // Best practice to let axios throw the errors
       // if (response.status >= 400) {
       //   throw new Error(`HTTP ${response.status}: ${response.statusText}`);
       // }
-      setTasks(response.data ?? []);
+      setTasks(response.data.tasks ?? []);
+      console.log('tasks', response);
     } catch (err) {
       setError(err instanceof Error ? err.message : "unknown error occurred");
     } finally {
@@ -50,7 +51,7 @@ const useGetAllTasks1 = () => {
       const response = await useGet('/tasks');
       // due to axios we dont need to do this 
       // if (response.status >= 400) throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-      setData(response.data);
+      setData(response.data.task);
     } catch (error) {
       setError(error instanceof Error ? error.message : 'unknown error occurred')
     } finally {

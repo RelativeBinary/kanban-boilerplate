@@ -15,10 +15,10 @@ export const useGetTask = (taskId: number) => {
   // 3. actual api calling implementation
   const fetchTask = async () => {
     try {
-      const response = await useGet(`/task/${taskId}`);
+      const response = await useGet(`/api/task/${taskId}`);
       // Best practice to let axois throw the errors
       // if (response.status >= 400) throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-      setTask(response.data);
+      setTask(response.data.task);
     } catch (err) {
       setError(err instanceof Error ? err.message : "unknown error occurred");
     } finally {

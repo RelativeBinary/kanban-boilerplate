@@ -10,8 +10,8 @@ export const useUpdateTask = () => {
     setLoading(true);
     setError(undefined);
     try {
-      const response = await usePost(`/task/${taskData.id}`, taskData);
-      return response.data;
+      const response = await usePost(`/api/task/${taskData.id}`, taskData);
+      return response.data.task;
     } catch (err) {
       setError(err instanceof Error ? err.message : "unknown error occurred");
       throw err;
