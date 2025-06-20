@@ -87,7 +87,7 @@ export const TaskCard = ({
         </div>
         <div className={styles["additional-actions"]}>
           <div className={styles["view"]}>
-            <ViewTaskDialog showAsText={false} targetTask={task} />
+            <ViewTaskDialog showAsText={false} targetTask={task} onHandleClose={() => {}} />
           </div>
           <div className={styles["edit"]}>
             <EditTaskDialog showAsText={false} targetTask={task} onSuccessfulEdit={onTaskUpdate} />

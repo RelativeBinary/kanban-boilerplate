@@ -50,7 +50,6 @@ export const ViewTaskDialog = ({
           {targetTask.name}
           <IconButton
             onClick={() => {
-              onHandleClose();
               handleClose();
             }}
             size="small"
