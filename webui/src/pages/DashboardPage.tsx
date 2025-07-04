@@ -28,16 +28,6 @@ export const DashboardPage = () => {
     }
   }, [initialTasks]);
 
-  let alerted = false;
-  useEffect(() => {
-    if (!alerted) {
-      alerted = true;
-      alert(
-        "Please refresh the page if no tasks load. \nThis demo runs on free platforms and may take a minute before the api is up and running"
-      );
-    }
-  }, []);
-
   const onTaskUpdate = async (updatedTask: Task) => {
     let targetTask: Task | undefined = tasks.find(
       (task) => task.id === updatedTask.id
