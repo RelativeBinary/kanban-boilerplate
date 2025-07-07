@@ -1,10 +1,8 @@
 .dashboard {
   display: flex;
   /* dvw and dvh are for mobile support vw and vh are fallbacks */
-  width: 100dvw;
-  width: 100vw;
-  height: 100vh;
-  height: 100dvh;
+  height: 92vh;
+  height: 92dvh;
   justify-content: space-evenly;
   padding: 18px;
   gap: 12px;

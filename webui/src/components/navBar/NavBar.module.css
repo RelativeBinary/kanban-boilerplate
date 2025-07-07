@@ -1,0 +1,9 @@
+.nav-container {
+  display: flex;
+  flex-direction: row;
+  height: 8vh;
+  height: 8dvh;
+  gap: var(--spacing-300);
+  padding: var(--spacing-300) var(--spacing-300) 0 var(--spacing-300);
+  box-sizing: border-box;
+}

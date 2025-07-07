@@ -1,8 +1,12 @@
+import { Route, Router, Routes } from "react-router";
 import "./App.css";
+import { NavBar } from "./components/navBar/NavBar";
 import { DashboardPage } from "./pages/DashboardPage";
+import { ProfilePage } from "./pages/ProfilePage";
+import { BoardsPage } from "./pages/BoardsPage";
 
 function App() {
-  // TODO user page stuff 
+  // TODO user page stuff
   function navigate(url: any) {
     window.location.href = url;
   }
@@ -19,7 +23,12 @@ function App() {
   return (
     <>
       {/* <button onClick={() => auth()}>google button</button> */}
-      <DashboardPage />
+      <NavBar />
+      <Routes>
+        <Route path="/" element={<DashboardPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/boards" element={<BoardsPage />} />
+      </Routes> 
     </>
   );
 }
